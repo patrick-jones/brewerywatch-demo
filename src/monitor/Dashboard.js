@@ -51,6 +51,7 @@ class Dashboard extends PureComponent {
                       readings={data.readings}
                       errors={errors}
                       detailPath={detailPath}
+                      tenant={tenant}
                     />
                   );
                 }}

@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react';
 import PT from 'prop-types';
+import {call, put} from 'redux-saga/effects';
 import {Avatar, Card, CardActions, CardText, CardTitle} from 'react-md';
 import { Link } from 'react-router-dom';
 
+import {firebase} from '../fb';
 import {Sensor, TemperatureReading} from '../fb/dataShapes';
 
-import {ClickToEdit} from '../common';
+import {ClickToEdit, managedComponent, SnackbarLogic} from '../common';
 import Gauge from './Gauge';
 import MiniTimelineChart from './MiniTimelineChart';
 import {vesselAvatar, defaultMinMax} from './helpers';
@@ -13,11 +15,41 @@ import {vesselAvatar, defaultMinMax} from './helpers';
 import './SensorCard.scss';
 
 
-class SensorCard extends PureComponent {
+const SensorCardLogic = managedComponent({
+  connect: {
+    actions: [
+      SnackbarLogic, ['addToast']
+    ],
+  },
+
+  path: () => ['kea', 'monitor', 'SensorCard'],
+
+  actions: () => ({
+    changeDisplayName: (uid, displayName) => ({uid, displayName}),
+  }),
+
+  takeEvery: ({ actions }) => ({
+    [actions.changeDisplayName]: function * (action) {
+      const {tenant} = this.props;
+      const {uid, displayName} = action.payload;
+      try {
+        const docRef = firebase.firestore().doc(`breweries/${tenant}/sensors/${uid}`);
+        yield call([docRef, docRef.update], {displayName})
+      } catch (e) {
+        yield put(actions.addToast('Unable to save name'));
+      }
+    },
+  }),
+
+});
+
+
+class SensorCardComponent extends PureComponent {
 
   static propTypes = {
     sensor: PT.shape(Sensor),
-    detailPath: PT.string.isRequired,
+    detailPath: PT.string,
+    tenant: PT.string,
     readings: PT.arrayOf(PT.shape(TemperatureReading)),
     units: PT.oneOf(['c', 'f']),
   };
@@ -25,16 +57,13 @@ class SensorCard extends PureComponent {
   static defaultProps = {
     readings: [],
     units: 'f',
+    detailPath: '',
+    tenant: '',
   };
 
   handleDisplayNameChanged = displayName => {
-    const {sensors, sensor: {uid}} = this.props;
-    // todo: saga-ize
-    sensors.doc(uid).update({
-      displayName
-    }).catch(e => {
-      console.log(e);
-    });
+    const {sensor: {uid}, actions: {changeDisplayName}} = this.props;
+    changeDisplayName(uid, displayName);
   };
 
   render() {
@@ -86,4 +115,8 @@ class SensorCard extends PureComponent {
   }
 }
 
-export default SensorCard;
+export default props => (
+  <SensorCardLogic {...props}>
+    <SensorCardComponent />
+  </SensorCardLogic>
+);

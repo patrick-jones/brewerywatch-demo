@@ -2,6 +2,7 @@ import AppBar from './AppBar';
 import ClickToEdit from './ClickToEdit';
 import EmptyState from './EmptyState';
 import ErrorBoundary from './ErrorBoundary';
+import managedComponent from './managedComponent';
 import MasterDetail from './MasterDetail';
 import PageContent from './PageContent';
 import Passthrough from './Passthrough';
@@ -18,6 +19,7 @@ export {
   ClickToEdit,
   EmptyState,
   ErrorBoundary,
+  managedComponent,
   MasterDetail,
   PageContent,
   Passthrough,
