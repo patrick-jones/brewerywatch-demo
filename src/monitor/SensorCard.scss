@@ -1,0 +1,15 @@
+@import "globals";
+@import 'react-md/src/scss/react-md';
+@include react-md-everything;
+
+
+.md-card-title.vessel-summary__title {
+    padding: $md-default-padding;
+    padding-bottom: 0;
+}
+
+.vessel-summary {
+    .md-card-text:last-child {
+        padding-bottom: 0;
+    }
+}

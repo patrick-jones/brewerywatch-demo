@@ -1,0 +1,31 @@
+@import 'react-md/src/scss/react-md';
+
+$md-colors-warn-md: false;
+
+// Variable overrides
+$brown: #bb834b;
+$brown-dark: shade($brown, 10%);
+$blue: #1e485a;
+$blue-dark: #15323f;
+$logo-blue: #193143;
+$blue-light: #4B6D7B;
+$tan: #f4ecdc;
+$tan-light: #fff7ea;
+$tan-dark: #d6b490;
+$white: #fff;
+$black: #222;
+$gray: #656565;
+$gray-light: shade($gray, 10%);
+$gray-dark: #4d4d4d;
+$gray-xtra-light: #edebeb;
+
+$ck-blue: #15323f;
+$ck-gold: #c3855d;
+$ck-tan: #d6b490;
+
+$md-primary-color: $blue-dark;
+$md-secondary-color: $brown;
+
+$md-data-table-contextual-fallback-color: rgba($md-secondary-color, .32);
+$md-linear-progress-fallback-color: rgba($md-secondary-color, .54);
+$md-switch-fallback-color: rgba($md-secondary-color, .87);

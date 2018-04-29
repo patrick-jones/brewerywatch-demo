@@ -1,0 +1,12 @@
+@import 'react-md/src/scss/react-md';
+@include react-md-everything;
+
+.react-svg-gauge-value {
+    @extend .md-display-2;
+    fill: $md-light-theme-text-color;
+}
+
+.react-svg-gauge-min-max {
+    @extend .md-title;
+    fill: $md-light-theme-secondary-text-color;
+}

@@ -1,0 +1,48 @@
+@import 'react-md/src/scss/react-md';
+
+.master-detail {
+    position: relative;
+}
+
+
+.master-detail--detail {
+    //position: absolute;
+    //top: 0;
+    //bottom: 0;
+    //left: 0;
+    //right: 0;
+
+    .hide-on-detail {
+        display: none;
+        visibility: collapse;
+    }
+}
+
+
+.master-detail__master--detail {
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    width: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-right: 1px solid #d4d4d5;
+
+    @media screen and (min-width: $md-tablet-min-width) {
+        top: 64px
+    }
+}
+
+
+.master-detail__detail {
+    display: none;
+    visibility: collapse;
+}
+
+
+.master-detail__detail--detail {
+    margin-left: 320px;
+    display: block;
+    visibility: visible;
+}
+

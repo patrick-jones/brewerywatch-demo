@@ -1,0 +1,14 @@
+yarn-error.log
+node_modules
+.cache
+build
+dist
+
+# WebStorm
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dataSources.*
+.idea/dataSources/
+
+# secrets
+.env

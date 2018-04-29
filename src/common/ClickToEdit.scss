@@ -1,0 +1,8 @@
+@import "globals";
+@import 'react-md/src/scss/react-md';
+
+.click-to-edit {
+    &:hover {
+        border: 1px dashed $blue-light;
+    }
+}

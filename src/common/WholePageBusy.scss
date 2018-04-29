@@ -1,0 +1,22 @@
+@import 'globals';
+@import 'react-md/src/scss/react-md';
+@include react-md-everything;
+
+.whole-page-busy-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+
+    @media #{$md-mobile-landscape-media}, #{$md-tablet-media} {
+        flex-direction: row;
+    }
+
+    &__spinner {
+        flex: none;
+    }
+    &__message {
+        flex: auto;
+    }
+}

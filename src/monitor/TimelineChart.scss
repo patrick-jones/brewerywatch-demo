@@ -1,0 +1,18 @@
+.timeline-chart--mousemode-click {
+    .recharts-surface {
+        cursor: crosshair;
+    }
+}
+
+.timeline-chart--mousemode-select {
+    .recharts-surface {
+        cursor: crosshair;
+    }
+}
+
+
+.timeline-chart--mousemode-select.timeline-chart--selecting {
+    .recharts-surface {
+        cursor: col-resize;
+    }
+}

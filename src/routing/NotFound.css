@@ -1,0 +1,17 @@
+.NotFound {
+  margin: 0;
+  padding: 10rem 0;
+  padding-top: 15vh;
+}
+
+.NotFound > div {
+  margin: auto;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.NotFound > div > img {
+  width: 100%;
+  max-width: 320px;
+}

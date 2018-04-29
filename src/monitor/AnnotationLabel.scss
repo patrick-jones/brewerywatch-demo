@@ -1,0 +1,9 @@
+
+.annotation-label {
+    opacity: 0.75;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1.0;
+    }
+}

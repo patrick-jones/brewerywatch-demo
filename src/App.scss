@@ -1,0 +1,109 @@
+@import 'globals';
+
+.md-overlay.md-overlay--clear {
+    background: transparent;
+}
+
+.md-avatar.md-avatar--large {
+    width: 64px;
+    height: 64px;
+}
+
+.md-avatar--ck-tan {
+    background: $ck-tan;
+}
+
+.md-avatar--tan {
+    background: $tan;
+}
+
+.md-avatar--tan-light {
+    background: $tan-light;
+}
+
+.md-avatar--gray-xtra-light {
+    background: $gray-xtra-light;
+}
+
+
+a {
+    text-decoration: none;
+    color: lighten($blue-light, 20%);
+
+    &:visited {
+        color: lighten($blue-light, 20%);
+    }
+
+    &:hover, &:active {
+        color: $blue-light;
+    }
+}
+
+svg {
+    .silhouette {
+        fill: $logo-blue;
+    }
+}
+
+.md-toolbar {
+    .md-list--menu {
+        overflow-y: hidden;
+    }
+}
+
+.md-toolbar-relative {
+    position: relative;
+}
+
+.container {
+    margin: auto;
+    @media screen and (min-width: $md-desktop-min-width) {
+        max-width: $md-desktop-min-width;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.rel {
+    position: relative;
+}
+
+.pad-x {
+    padding-left: $md-default-padding;
+    padding-right: $md-default-padding;
+
+    @media screen and (min-width: $md-desktop-min-width) {
+        padding-left: $md-default-padding * 2;
+        padding-right: $md-default-padding * 2;
+    }
+}
+
+.pad-y {
+    padding-top: $md-default-padding;
+    padding-bottom: $md-default-padding;
+
+    @media screen and (min-width: $md-desktop-min-width) {
+        padding-top: $md-default-padding * 2;
+        padding-bottom: $md-default-padding * 2;
+    }
+}
+
+.recharts-cartesian-axis-tick {
+    .recharts-cartesian-axis-tick-value {
+        user-select: none;
+    }
+}
+
+
+blockquote {
+    border-left: 4px solid $md-light-theme-divider-color;
+    margin-left: 0;
+    padding-left: 1.5em;
+
+    p {
+        color: $md-light-theme-secondary-text-color;
+        margin: 0;
+    }
+}
