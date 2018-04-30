@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button, Card, CardActions, CardTitle, FontIcon} from 'react-md';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -13,15 +14,25 @@ class ErrorBoundary extends React.Component {
     console.log(error, info);
   }
 
+  handleRetry = () => {
+    this.setState({hasError: false});
+  };
+
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
-        <div>
-          <p className='md-text--error'>
-            Loading error ☹
-          </p>
-        </div>
+        <Card className='md-block-centered'>
+          <CardTitle
+            title='The UI did not draw correctly'
+            subtitle='This is probably a bug ☹'
+            avatar={<FontIcon>mood_bad</FontIcon>}
+            className='md-text--error'
+          />
+          <CardActions>
+            <Button flat onClick={this.handleRetry}>Retry</Button>
+          </CardActions>
+        </Card>
       );
     }
     return this.props.children;

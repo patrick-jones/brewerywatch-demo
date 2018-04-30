@@ -51,12 +51,15 @@ class ClickToEdit extends PureComponent {
     fullWidth: PT.bool,
     onSave: PT.func.isRequired,
     className: PT.string,
+    multiline: PT.bool,
+    rows: PT.number,
   };
 
   static defaultProps = {
     value: '',
     fullWidth: true,
     className: '',
+    multiline: false,
   };
 
   componentDidUpdate(prevProps) {
@@ -106,7 +109,10 @@ class ClickToEdit extends PureComponent {
       );
     }
 
-    const {placeholder, fieldValue} = this.props;
+    const {placeholder, fieldValue, multiline, rows} = this.props;
+
+
+
     return (
       <div className={className}>
         <TextField
@@ -117,6 +123,7 @@ class ClickToEdit extends PureComponent {
           onChange={this.props.actions.setValue}
           onKeyUp={this.handleKeyUp}
           onBlur={this.handleSave}
+          rows={multiline ? rows : undefined}
         />
       </div>
     );

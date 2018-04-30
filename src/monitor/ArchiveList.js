@@ -9,12 +9,13 @@ import {
   TableBody,
   TableRow,
   TableColumn,
-  TablePagination,
 } from 'react-md';
 
-import {EmptyState, WholePageBusy} from '../common';
+import {EmptyState} from '../common';
 
 import {Archive} from '../fb/dataShapes';
+
+import './ArchiveList.scss';
 
 
 function formatDate(dt) {
@@ -54,7 +55,7 @@ class ArchiveList extends PureComponent {
     //   );
     // }
     return (
-      <Fragment>
+      <div style={{flex: 'auto'}}>
         <DataTable plain>
           <TableHeader>
             <TableRow>
@@ -66,7 +67,13 @@ class ArchiveList extends PureComponent {
           <TableBody>
             {archives.map(archive => (
               <TableRow key={archive.uid} onClick={() => this.handleClick(archive)}>
-                <TableColumn>{archive.label}</TableColumn>
+                <TableColumn
+                  plain={false}
+                  title={archive.label}
+                  className='archive-list-column__label'
+                >
+                  {archive.label}
+                </TableColumn>
                 {showDetail ? null : <TableColumn>{archive.note}</TableColumn>}
                 <TableColumn>{formatDate(archive.created)}</TableColumn>
               </TableRow>
@@ -80,7 +87,7 @@ class ArchiveList extends PureComponent {
             message={<Fragment>You can archive sensor readings from <Link to='/readings'>Live Readings</Link></Fragment>}
           />
         }
-      </Fragment>
+      </div>
     );
   }
 }

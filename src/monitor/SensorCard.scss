@@ -9,7 +9,7 @@
 }
 
 .vessel-summary {
-    .md-card-text:last-child {
+    .md-card-text, .md-card-text:last-child {
         padding-bottom: 0;
     }
 }

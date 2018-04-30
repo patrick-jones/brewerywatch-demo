@@ -29,10 +29,10 @@ class DetailToolbar extends Component {
   };
 
   render() {
-    const {title, activeTool} = this.props;
+    const {title, subtitle, activeTool} = this.props;
     return (
       <Toolbar
-        title={title}
+        title={`${title} - ${subtitle}`}
         themed
         actions={[
           <Button
@@ -54,7 +54,8 @@ class DetailToolbar extends Component {
             archive
           </Button>,
         ]}
-      />
+      >
+      </Toolbar>
     );
   }
 }

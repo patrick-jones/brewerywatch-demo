@@ -36,6 +36,8 @@ const ArchivedReadings = props => {
       {({data, errors}) => {
         const {sensor={}} = data;
         const title = `${archive.label} - ${sensor.displayName || archive.src}`;
+        const subtitle = sensor.displayName ? archive.src : '';
+
         return (
           <ErrorBoundary>
             <DetailManager
@@ -54,6 +56,7 @@ const ArchivedReadings = props => {
                 units={units}
                 live={false}
                 title={title}
+                subtitle={subtitle}
                 {...data}
               />
             </DetailManager>

@@ -23,6 +23,7 @@ const DetailManager = kea({
     // unzoom: () => ({start: 'dataMin', end: 'dataMax'}),
     archive: (start, end) => ({start, end}),
     annotate: point => ({point}),
+    setSticky: (tenant, sensoruid, sticky) => ({tenant, sensoruid, sticky}),
 
     formLabel: label => ({label}),
     formNote: note => ({note}),
@@ -104,6 +105,7 @@ const DetailManager = kea({
         batch.set(docRef, {
           src: sensor.uid,
           kind: sensor.kind,
+          sticky: sensor.sticky,
           series: series,
           label: form.label,
           note: form.note,
@@ -136,7 +138,7 @@ const DetailManager = kea({
 
     [actions.saveAnnotation]: function* ({payload}) {
       const {form, point} = payload;
-      const {tenant, datumPath} = this.props;
+      const {datumPath} = this.props;
       const docRef = firestore.doc(`${datumPath}/${point.uid}`);
       yield call([docRef, docRef.update], {
         annotation: form.label,
@@ -151,7 +153,20 @@ const DetailManager = kea({
       yield call([docRef, docRef.update], {
         annotation: firebase.firestore.FieldValue.delete(),
       });
-    }
+    },
+
+    [actions.setSticky]: function* ({payload: {tenant, sensoruid, sticky}}) {
+      const docRef = firestore.doc(`breweries/${tenant}/sensors/${sensoruid}`);
+      try {
+        yield call([docRef, docRef.update], {
+          sticky,
+        });
+      } catch (x) {
+        // permissions
+        console.log(x);
+        yield put(actions.addToast("You don't have note writing privileges"));
+      }
+    },
   }),
 
 })(Passthrough);

@@ -24,8 +24,27 @@ export default class AnnotationLabel extends React.Component {
     if (onClick) onClick(point);
   };
 
+  renderSymbol(point, fill) {
+    if (point.kind === 'annotation') {
+      return (
+        <g fill={fill}>
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <rect x="5" y="4" width="14" height="16" fill='#ffffff' />
+          <path d="M17 10H7v2h10v-2zm2-7h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm-5-5H7v2h7v-2z"/>
+        </g>
+      );
+    }
+
+    return (
+      <g fill={fill}>
+        <circle cx="12" cy="12" r="12" fill="#ffffff"/>
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+      </g>
+    );
+  }
+
   render() {
-    const {point, fill, viewBox, onClick} = this.props;
+    const {point, fill, viewBox} = this.props;
     const {height, width} = viewBox;
     const x = viewBox.x + (width / 2) - 12;
     const y = viewBox.y + (height / 2);
@@ -41,9 +60,7 @@ export default class AnnotationLabel extends React.Component {
       >
         <title>{point.annotation}</title>
         <desc>Click for more</desc>
-        <circle cx="12" cy="12" r="12" fill="#ffffff"/>
-        <path fill={fill}
-              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+        {this.renderSymbol(point, fill)}
       </svg>
     );
   }

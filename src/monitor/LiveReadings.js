@@ -1,5 +1,4 @@
 import React from 'react';
-import {Button, DialogContainer, TextField, Toolbar} from 'react-md';
 
 import {Firestore} from '../fb';
 
@@ -25,16 +24,15 @@ const LiveReadings = props => {
       subs={{
         readings: {
           path: datumPath,
-          where: {
+          where: [{
             field: 'src',
             comp: '==',
             value: uid,
-          },
-          where: {
+          }, {
             field: 'series',
             comp: '==',
             value: sensor.series,
-          },
+          }],
           orderBy: {
             field: 'ts',
             direction: 'desc',
@@ -42,10 +40,32 @@ const LiveReadings = props => {
           dataCallback: data => ({...data, epoch: data.ts.seconds}),
           collectionCallback: docs => docs.reverse(),
         },
+        postIt: {
+          path: datumPath,
+          where: [{
+            field: 'src',
+            comp: '==',
+            value: uid,
+          }, {
+            field: 'series',
+            comp: '==',
+            value: sensor.series,
+          }, {
+            field: 'kind',
+            comp: '==',
+            value: 'annotation',
+          }],
+          orderBy: {
+            field: 'ts',
+            direction: 'desc',
+          },
+          limit: 1,
+        }
       }}
     >
       {({data, errors}) => {
         const title = sensor.displayName || sensor.uid;
+        const subtitle = sensor.displayName ? sensor.uid : '';
 
         return (
           <ErrorBoundary>
@@ -66,6 +86,7 @@ const LiveReadings = props => {
                 units={units}
                 live={true}
                 title={title}
+                subtitle={subtitle}
                 {...data}
               />
             </DetailManager>

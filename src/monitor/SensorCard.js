@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PT from 'prop-types';
 import {call, put} from 'redux-saga/effects';
-import {Avatar, Card, CardActions, CardText, CardTitle} from 'react-md';
+import {Card, CardText, ExpansionPanel} from 'react-md';
 import { Link } from 'react-router-dom';
 
 import {firebase} from '../fb';
@@ -13,6 +13,7 @@ import MiniTimelineChart from './MiniTimelineChart';
 import {vesselAvatar, defaultMinMax} from './helpers';
 
 import './SensorCard.scss';
+import DetailSticky from './DetailSticky';
 
 
 const SensorCardLogic = managedComponent({
@@ -67,7 +68,7 @@ class SensorCardComponent extends PureComponent {
   };
 
   render() {
-    const {sensor: {uid, kind, displayName}, detailPath, readings, units} = this.props;
+    const {sensor: {uid, kind, displayName, sticky}, detailPath, readings, units} = this.props;
     const title = displayName || uid;
 
     const subtitle = kind === 'brite' ? 'Brite' : 'Fermenter';
@@ -109,7 +110,6 @@ class SensorCardComponent extends PureComponent {
         <CardText>
           <MiniTimelineChart readings={readings} units={units} />
         </CardText>
-        {/*<CardActions></CardActions>*/}
       </Card>
     );
   }

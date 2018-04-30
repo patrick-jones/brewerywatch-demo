@@ -4,6 +4,7 @@ import PT from 'prop-types';
 import {TemperatureReading} from '../fb/dataShapes';
 
 import {mouseMode} from './helpers';
+import DetailSticky from './DetailSticky';
 import DetailToolbar from './DetailToolbar';
 import RetentionWarning from './RetentionWarning';
 import TimelineChart from './TimelineChart';
@@ -67,16 +68,24 @@ export default class DetailComponent extends PureComponent {
     actions.formClose();
   };
 
+  handleStickyChanged = (sticky) => {
+    const {tenant, uid, actions: {setSticky}} = this.props;
+    setSticky(tenant, uid, sticky);
+  };
+
   render() {
     const {
-      actions, uid, readings, annotations, units, live, title,
-      activeTool, archiveRegion, annotateAt, editAt, form
+      actions, uid, readings, annotations, units, live, title, subtitle,
+      activeTool, archiveRegion, annotateAt, editAt, form, sensor
     } = this.props;
+
+    // actions.setSticky
 
     return (
       <div className="pad-x pad-y rel">
         <DetailToolbar
           title={title}
+          subtitle={subtitle}
           activeTool={activeTool}
           setTool={actions.setTool}
         />
@@ -90,6 +99,10 @@ export default class DetailComponent extends PureComponent {
           onRegionSelect={this.handleRegionSelect}
           onPointSelect={actions.annotate}
           onAnnotationClick={actions.editAnnotation}
+        />
+        <DetailSticky
+          sticky={sensor.sticky}
+          onStickyChanged={this.handleStickyChanged}
         />
         <TimelineSaveDialog
           title={archiveRegion ? 'Archive readings' : 'Add marker'}
