@@ -1,5 +1,4 @@
 import React from 'react';
-import {Button, DialogContainer, TextField, Toolbar} from 'react-md';
 
 import {Firestore} from '../fb';
 import {ErrorBoundary, WholePageBusy} from '../common';
@@ -53,7 +52,7 @@ const ArchivedReadings = props => {
                 user={user}
                 profile={profile}
                 errors={errors}
-                units={units}
+                units={profile.units}
                 live={false}
                 title={title}
                 subtitle={subtitle}

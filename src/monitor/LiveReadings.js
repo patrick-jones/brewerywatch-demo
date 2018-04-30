@@ -8,7 +8,7 @@ import DetailManager from './DetailManager';
 
 
 const LiveReadings = props => {
-  const {uid, tenant, user, profile, sensors=[], units} = props;
+  const {uid, tenant, user, profile, sensors=[]} = props;
 
   const sensor = sensors.find(s => s.uid === uid);
 
@@ -83,7 +83,7 @@ const LiveReadings = props => {
                 profile={profile}
                 sensor={sensor}
                 errors={errors}
-                units={units}
+                units={profile.units}
                 live={true}
                 title={title}
                 subtitle={subtitle}

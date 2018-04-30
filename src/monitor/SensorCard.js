@@ -13,7 +13,6 @@ import MiniTimelineChart from './MiniTimelineChart';
 import {vesselAvatar, defaultMinMax} from './helpers';
 
 import './SensorCard.scss';
-import DetailSticky from './DetailSticky';
 
 
 const SensorCardLogic = managedComponent({
@@ -68,7 +67,7 @@ class SensorCardComponent extends PureComponent {
   };
 
   render() {
-    const {sensor: {uid, kind, displayName, sticky}, detailPath, readings, units} = this.props;
+    const {sensor: {uid, kind, displayName}, detailPath, readings, units} = this.props;
     const title = displayName || uid;
 
     const subtitle = kind === 'brite' ? 'Brite' : 'Fermenter';

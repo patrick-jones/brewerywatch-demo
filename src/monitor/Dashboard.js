@@ -30,7 +30,7 @@ class Dashboard extends PureComponent {
   };
 
   sensorCards = (sensors=[]) => {
-    const {router: {match}, tenant} = this.props;
+    const {router: {match}, tenant, profile} = this.props;
     return (
       <ErrorBoundary>
         {sensors.map(sensor => {
@@ -52,6 +52,7 @@ class Dashboard extends PureComponent {
                       errors={errors}
                       detailPath={detailPath}
                       tenant={tenant}
+                      units={profile.units}
                     />
                   );
                 }}
