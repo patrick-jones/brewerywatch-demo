@@ -5,6 +5,8 @@ import 'firebase/firestore';
 // this is to avoid re-initializing during hot reload
 try {
   if (firebase.apps.length === 0) {
+    // it feels wrong including this but it is actually the way firebase works
+    // https://javebratt.com/hide-firebase-api/
     firebase.initializeApp({
       apiKey: "AIzaSyD3zHF4aUvx-j4OCvlgEd703vGfqPtWqfY",
       authDomain: "brewery-monitor.firebaseapp.com",
