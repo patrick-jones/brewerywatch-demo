@@ -22,7 +22,7 @@
     "history": "^4.7.2",
     "kea": "^0.28.2",
     "kea-saga": "^0.3.2",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.19",
     "prop-types": "^15.6.1",
     "querystring": "^0.2.0",
     "react": "^16.0.0-0",
